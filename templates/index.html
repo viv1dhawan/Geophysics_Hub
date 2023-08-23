@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geophysics Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        header {
+          background-color: #35495E;
+          color: #FFF;
+          text-align: center;
+          padding: 20px;
+        }
+        nav {
+          background-color: #2C3E50;
+          display: flex;
+          justify-content: center;
+          padding: 10px;
+        }
+        nav a {
+          color: #FFF;
+          text-decoration: none;
+          margin: 0 20px;
+        }
+        .map {
+          width: 100%;
+          height: 400px;
+          background-color: #ECECEC;
+        }
+        .featured-research {
+          padding: 20px;
+        }
+        .virtual-field-trips {
+          padding: 20px;
+        }
+        .geophysical-techniques {
+          padding: 20px;
+        }
+        .ask-an-expert {
+          background-color: #F0F0F0;
+          padding: 20px;
+        }
+        .geophysics-in-action {
+          padding: 20px;
+        }
+        .resources {
+          padding: 20px;
+        }
+        .events {
+          background-color: #F0F0F0;
+          padding: 20px;
+        }
+        footer {
+          background-color: #2C3E50;
+          color: #FFF;
+          text-align: center;
+          padding: 10px;
+        }
+      </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Geophysics Hub</h1>
+        </header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Research</a>
+            <a href="#">Virtual Field Trips</a>
+            <a href="#">Techniques</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="column mt-4">
+            <h2>Gravity Correction</h2>
+                <input type="text" name="method" placeholder="Method">
+                <div class="form-group">
+                    <label for="correction_type">Gravity Correction Type:</label>
+                    <select class="form-control" name="correction_type" id="correction_type">
+                        <option value="free_air">Free Air</option>
+                        <option value="bouguer">Bouguer</option>
+                        <option value="terrain">Terrain</option>
+                        <option value="eotvos">Eotvos</option>
+                        <option value="latitude">Latitude</option>
+                        <option value="igf">IGF</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" class="form-control" name="latitude" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="elevation">Elevation:</label>
+                    <input type="text" class="form-control" name="elevation" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="observed_gravity">Observed Gravity:</label>
+                    <input type="text" class="form-control" name="observed_gravity" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Calculate Gravity Correction</button>
+            </form>
+
+            {% if corrected_gravity is not none %}
+            <p>Corrected Gravity: {{ corrected_gravity }}</p>
+            {% endif %}
+        </div>
+
+        <div class="column mt-4">
+            <h2>Resistivity Calculation</h2>
+            <form method="POST" action="/">
+                <div class="form-group">
+                    <label for="method">Calculation Method:</label>
+                    <select class="form-control" name="method" id="method">
+                        <option value="Wenner">Wenner</option>
+                        <option value="Schlumberger">Schlumberger</option>
+                        <option value="Pole-Pole">Pole-Pole</option>
+                        <option value="Pole-Dipole">Pole-Dipole</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="a">Electrode Spacing (a):</label>
+                    <input type="text" class="form-control" name="a" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="b">Electrode Separation (b):</label>
+                    <input type="text" class="form-control" name="b" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="n">Number of Electrode Spacings (n):</label>
+                    <input type="number" class="form-control" name="n" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="d">Distance Between Electrodes (d):</label>
+                    <input type="text" class="form-control" name="d" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Calculate Resistivity</button>
+            </form>
+
+            {% if resistivity is not none %}
+            <p>Resistivity: {{ resistivity }}</p>
+            {% endif %}
+        </div>
+        <footer>
+            <p>&copy; 2023 Geophysics Hub. All rights reserved.</p>
+        </footer>
+        <div class="mt-4">
+            <a href="/about" class="btn btn-secondary">About</a>
+            <a href="/resources" class="btn btn-secondary">Resources</a>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
